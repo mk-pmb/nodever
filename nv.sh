@@ -6,7 +6,7 @@ function summarize_node_versions () {
   local PKG=
   for PKG in "$@"; do
     [ -n "$PKG" ] || continue
-    PKG="require('$PKG/package.json').version;"
+    PKG="require('$PKG/package.json').version"
     echo -n "$PKG = "
     nodejs -p "$PKG"
   done
