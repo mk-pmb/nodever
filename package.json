@@ -1,0 +1,30 @@
+{ "name": "nodever",
+  "version": "1.0.0",
+  "description": "Small bash script to gather, for writing bug reports, version information about node.js, linux distro, kernel, and (optional) packages.",
+  "keywords": [
+    "bug",
+    "cli",
+    "node.js",
+    "package",
+    "report",
+    "version"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/nodever#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/nodever.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/nodever/issues"
+  },
+
+  "private": false, "license": "ISC",
+
+  "main": "nv.sh",
+  "bin": "nv.sh",
+
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}
