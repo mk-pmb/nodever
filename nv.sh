@@ -4,7 +4,9 @@
 
 function summarize_node_versions () {
   local PKG=
-  for PKG in "$@"; do
+  local SORTED=()
+  readarray -t SORTED < <(printf '%s\n' "$@" | sort --unique --version-sort)
+  for PKG in "${SORTED[@]}"; do
     [ -n "$PKG" ] || continue
     PKG="require('$PKG/package.json').version"
     echo -n "$PKG = "
