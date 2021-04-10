@@ -3,15 +3,7 @@
 
 
 function summarize_node_versions () {
-  local PKG=
-  local SORTED=()
-  readarray -t SORTED < <(printf '%s\n' "$@" | sort --unique --version-sort)
-  for PKG in "${SORTED[@]}"; do
-    [ -n "$PKG" ] || continue
-    PKG="require('$PKG/package.json').version"
-    echo -n "$PKG = "
-    nodejs -p "$PKG"
-  done
+  [ "$#" == 0 ] || nodejs -e "require('nodever/findver.js')" -- -- "$@"
   echo "Node.js $(nodejs --version), npm v$(npm --version
     ), $(lsb_release -sd) $(lsb_release -sc
     ),"
