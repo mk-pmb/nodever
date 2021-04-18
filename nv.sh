@@ -3,7 +3,7 @@
 
 
 function summarize_node_versions () {
-  [ "$#" == 0 ] || nodejs -e "require('nodever/findver.js')" -- -- "$@"
+  [ "$#" == 0 ] || nodejs -e "require('nodever')(require)" -- -- "$@"
   echo "Node.js $(nodejs --version), npm v$(npm --version
     ), $(lsb_release -sd) $(lsb_release -sc
     ),"
@@ -22,4 +22,4 @@ function summarize_node_versions () {
 
 
 
-[ "$1" == --lib ] && return 0; summarize_node_versions "$@"; exit $?
+summarize_node_versions "$@"; exit $?

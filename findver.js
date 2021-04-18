@@ -3,16 +3,19 @@
 /* -*- tab-width: 2 -*- */
 'use strict';
 
-var findManif = require('resolve-package-path'),
+var makeRobustRequire = require('robust-require-resolve-pmb'),
   fmt = (process.env.NODEVER_FMT || '%s: %s');
 
-process.argv.slice(2).sort().forEach(function lookup(p) {
-  if (p == '--') { return; }
-  var v;
-  try {
-    v = require(findManif(p)).version;
-  } catch (e) {
-    v = String(e);
-  }
-  console.log(fmt, p, v);
-});
+module.exports = function (rqr) {
+  var rrr = makeRobustRequire(rqr);
+  process.argv.slice(2).sort().forEach(function lookup(p) {
+    if (p === '--') { return; }
+    var v;
+    try {
+      v = rqr(rrr(p + '/package.json')).version;
+    } catch (e) {
+      v = String(e);
+    }
+    console.log(fmt, p, v);
+  });
+};
