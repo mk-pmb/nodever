@@ -3,16 +3,17 @@
 /* -*- tab-width: 2 -*- */
 'use strict';
 
-var makeRobustRequire = require('robust-require-resolve-pmb'),
+var makeRobustRequireResolver = require('robust-require-resolve-pmb'),
   fmt = (process.env.NODEVER_FMT || '%s: %s');
 
 module.exports = function (rqr) {
-  var rrr = makeRobustRequire(rqr);
+  var rrr = makeRobustRequireResolver(rqr);
   process.argv.slice(2).sort().forEach(function lookup(p) {
     if (p === '--') { return; }
     var v;
     try {
-      v = rqr(rrr(p + '/package.json')).version;
+      v = rrr(p + '/package.json');
+      v = rqr(v).version;
     } catch (e) {
       v = String(e);
     }

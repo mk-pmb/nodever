@@ -1,5 +1,5 @@
 { "name": "nodever",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Small bash script to gather, for writing bug reports, version information about node.js, linux distro, kernel, and (optional) packages.",
   "keywords": [
     "bug",
